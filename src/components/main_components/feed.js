@@ -5,6 +5,8 @@ import AvatarModalForFeed from '../feed/avatar_modal_for_feed';
 import SuggestionsModalForFeed from '../feed/suggestions_modal_for_feed'
 
 //
+const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
+
 const styles = {
   label: {
     width: '100%',
@@ -58,7 +60,7 @@ const Feed = (props) => {
               </div>
             </div>
             <div style={ styles.pic }>
-              <ImageModalForFeed my_src={ `http://localhost:8080/${src.path}` }/>
+              <ImageModalForFeed my_src={ `${host}/${src.path}` }/>
             </div>
           </div>
         )}

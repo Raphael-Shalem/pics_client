@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ImageModal from '../modals/image_modal';
 import Loader from '../graphic_components/loader';
 
+const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
 
 const styles = {
   grid: {
@@ -51,7 +52,7 @@ const PictureGrid = (props) => {
                     overflow:'hidden'
                   }}
           >
-            <ImageModal my_src={ `http://localhost:8080/${src.path}` } my_height={ src.height } my_width={ src.width } picSize={ picSize } size={ props.size }/>
+            <ImageModal my_src={ `${host}/${src.path}` } my_height={ src.height } my_width={ src.width } picSize={ picSize } size={ props.size }/>
           </div>
         )}
       </div>

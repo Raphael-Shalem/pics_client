@@ -4,6 +4,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 //import jwt from 'jsonwebtoken';
 
 
+const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
 
 //sighnup_request - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -11,7 +12,7 @@ function* sighnup_request() {
   while(true) {
     try {
       const userInput = yield take('SIGNUP_REQUEST_SAGA');
-      const response = yield call(axios.post,'http://localhost:8080/api/db/make_new_user', {
+      const response = yield call(axios.post,`${host}/api/db/make_new_user`, {
           userName: userInput.signup_values.username,
           userEmail: userInput.signup_values.email,
           userPassword: userInput.signup_values.password
@@ -60,7 +61,7 @@ function* login_request() {
   while(true) {
     try {
       const userInput = yield take('LOGIN_REQUEST_SAGA');
-      const response = yield call(axios.post,'http://localhost:8080/api/db/authenticate_user', {
+      const response = yield call(axios.post,`${host}/api/db/authenticate_user`, {
           userEmail: userInput.login_values.email,
           userPassword: userInput.login_values.password
         }
@@ -125,7 +126,7 @@ function* upload_image() {
 
       yield call(
         axios.post,
-        'http://localhost:8080/api/db/upload_pic',
+        `${host}/api/db/upload_pic`,
         formData,
         config
       );
@@ -160,7 +161,7 @@ function* delete_image() {
 
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/delete_image', {
+        `${host}/api/db/delete_image`, {
           source : source,
           user_id : user_id,
           avatarName: avatarName
@@ -194,7 +195,7 @@ function* get_new_paths() {
       const userInput = yield take('REQUEST_IMAGES_FOR_USER_SAGA');
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/update_profile_page_path_list', {
+        `${host}/api/db/update_profile_page_path_list`, {
           user_id : userInput.values.user_id,
           userName : userInput.values.userName,
           avatar : userInput.values.avatar
@@ -234,7 +235,7 @@ function* get_paths_for_other_user() {
 
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/get_paths_for_other_user', {
+        `${host}/api/db/get_paths_for_other_user`, {
           user_id : input.value.user._id,
         }
       );
@@ -278,7 +279,7 @@ function* get_other_user_info() {
 
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/get_paths_for_other_user', {
+        '${host}/api/db/get_paths_for_other_user', {
           user_id : input.value.user,
         }
       );
