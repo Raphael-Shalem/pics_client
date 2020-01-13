@@ -319,7 +319,7 @@ function* follow_other_user() {
       const { user_id, other_user_id, following, followers, other_user_followers } = input.values;
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/follow_other_user', {
+        `${host}/api/db/follow_other_user`, {
           user_id, other_user_id, following, followers, other_user_followers
         }
       );
@@ -380,7 +380,7 @@ function* upload_avatar() {
       };
       yield call(
         axios.post,
-        'http://localhost:8080/api/db/upload_avatar',
+        `${host}/api/db/upload_avatar`,
         formData,
         config
       );
@@ -406,7 +406,7 @@ function* update_avatar_path() {
       const userInput = yield take('REQUEST_USER_AVATAR_SAGA');
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/update_avatar_path', {
+        `${host}/api/db/update_avatar_path`, {
         user_id : userInput.user_id,
         }
       );
@@ -439,7 +439,7 @@ function* search_for_user() {
 
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/search_for_user', {
+        `${host}/api/db/search_for_user`, {
           user_input : user_input
         }
       );
@@ -480,7 +480,7 @@ function* suggest_users() {
       const { skip } = input.value || 0;
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/suggest_users'
+        `${host}/api/db/suggest_users`
       );
 
       const { successful_res, users } = result.data;
@@ -518,7 +518,7 @@ function* delete_user() {
 
       const result = yield call(
         axios.post,
-        'http://localhost:8080/api/db/delete_user', {
+        `${host}/api/db/delete_user`, {
           user_id : user_id,
           avatar: avatar
         }
@@ -585,7 +585,7 @@ function* cookie_test() {
       console.log('saga dispached');
       const result = yield call(
         axios.get,
-        'http://localhost:8080/api/db/cookie_test'//,
+        `${host}/api/db/cookie_test`//,
       //  { withCredentials: true }
       );
       console.log('result');
