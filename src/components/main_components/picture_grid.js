@@ -29,7 +29,7 @@ const PictureGrid = (props) => {
 
   const { isLoading, paths } = state;
 
-  const root_width = props.size[0] > 900 ? 66 : 100;
+  const root_width = props.size[0] > 900 ? 66 : 95;
   const picSize = props.size[0] > 900 ? props.size[0] / 100 * 66 / 3.166 : props.size[0] / 3.166;
 
   if (isLoading) { return ( <Loader/> ); }
