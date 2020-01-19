@@ -5,6 +5,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 
 
 const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
+//const host = `https://raphael-pics-server.herokuapp.com`
 
 //sighnup_request - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -203,6 +204,7 @@ function* get_new_paths() {
       );
 
       const { token, successful_update, user_id, userName, paths } = result.data;
+      console.log('got these paths from server : ', paths);
       if (!successful_update) {
         yield put({type: 'BAD_UPDATE_REQUEST' })
       }
