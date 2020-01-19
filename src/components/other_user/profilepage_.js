@@ -12,7 +12,7 @@ const ProfilePage2 = (props) => {
       },[props.other_user, props.history]
     )
 
-    const [size, setSize] = React.useState([0,0]);
+    const [size, setSize] = React.useState([500, 500]);
     React.useLayoutEffect(() => {
       function updateSize() {
         setSize([window.innerWidth, window.innerHeight]);

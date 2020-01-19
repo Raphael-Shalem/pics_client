@@ -23,11 +23,11 @@ const styles = {
     width:'35%',
     height:'50px',
   //  backgroundColor: '#1A1A33',
-    backgroundColor: '#1A1A33',
 
-  //  backgroundColor: '#30304B',
+  //backgroundColor: '#37375B',
+    backgroundColor: '#3F3F5B',
     color: '#CCD',
-    boxShadow: '0px 4px 4px #222',
+  //  boxShadow: '0px 4px 4px #555',
     cursor: 'pointer',
     border: '0px'
   },
@@ -39,7 +39,8 @@ const styles = {
   },
   link2:{
     textDecoration: 'none',
-    color: '#DDE'
+  //  color: '#DDE'
+    color: '#37375B'
   }
 };
 
@@ -72,7 +73,7 @@ const LogInForm_ = (props) => {
           left: '50%',
           transform: `translate(-50%, -50%)`,
       //    backgroundColor: '#494958',
-          backgroundColor: '#494958',
+          backgroundColor: '#A0A0B4',
           width: size > 600 ? '500px' : '95%',
           padding: '100px 0 100px 0',
           textAlign: 'center',

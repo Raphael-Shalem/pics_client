@@ -6,9 +6,9 @@ import ImageModal from '../modals/image_modal_2';
 const styles = {
   grid: {
     display: 'grid',
-    padding: '10px',
+    padding: '2px',
     gridTemplateColumns: '1fr 1fr 1fr',
-    gridColumnGap: '5px',
+    gridColumnGap: '10px',
     gridRowGap: '10px'
   }
 };
@@ -18,7 +18,10 @@ const PictureGrid_ = (props) => {
   const paths = props.other_user.paths || [];
 
   const root_width = props.size[0] > 900 ? 66 : 100;
-  const picSize = props.size[0] > 900 ? props.size[0] / 100 * 66 / 3.166 : props.size[0] / 3.166;
+  const picSize = props.size[0] > 900 ? props.size[0] / 100 * 66 / 3.166 : props.size[0] / 3.166 - 30;
+  const image_container_height = props.size[0] > 900 ? picSize : props.size[0]/3;
+
+  console.log(props.size[0])
 
   return (
     <div style={{
@@ -29,16 +32,20 @@ const PictureGrid_ = (props) => {
      >
       <div style={ styles.grid }>
         { paths.map((src, index) =>
-          <div
-          key={`pic_div_${index}`}
-          style={{
-                  cursor: 'pointer',
-                  height: `${picSize}px`,
-                  width: `${picSize}px`,
-                  overflow:'hidden'
-                }}
-          >
-            <ImageModal my_src={ src.path } my_height={ src.height } my_width={ src.width } picSize = {picSize} size={ props.size }/>
+          <div style={{ height: image_container_height }} key={`pic_div_${index}`}>
+            <div
+            style={{
+                    cursor: 'pointer',
+                    height: `${picSize}px`,
+                    width: `${picSize}px`,
+                    overflow:'hidden',
+                    marginTop: '50%',
+                    marginLeft: '50%',
+                    transform: `translate(-50%, -50%)`
+                  }}
+            >
+              <ImageModal my_src={ src.path } my_height={ src.height } my_width={ src.width } picSize ={ picSize } size={ props.size }/>
+            </div>
           </div>
         )}
       </div>

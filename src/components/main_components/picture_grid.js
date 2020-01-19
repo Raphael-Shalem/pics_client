@@ -7,10 +7,11 @@ import Loader from '../graphic_components/loader';
 
 const styles = {
   grid: {
+  //  width: '99%',
     display: 'grid',
-    padding: '10px',
+    padding: '2px',
     gridTemplateColumns: '1fr 1fr 1fr',
-    gridColumnGap: '5px',
+    gridColumnGap: '10px',
     gridRowGap: '10px'
   }
 };
@@ -29,9 +30,9 @@ const PictureGrid = (props) => {
 
   const { isLoading, paths } = state;
 
-  const root_width = props.size[0] > 900 ? 66 : 95;
-  const picSize = props.size[0] > 900 ? props.size[0] / 100 * 66 / 3.166 : props.size[0] / 3.166;
-
+  const root_width = props.size[0] > 900 ? 66 : 99;
+  const picSize = props.size[0] > 900 ? props.size[0] / 100 * 66 / 3.166 : props.size[0] / 3.166 - 30;
+  const image_container_height = props.size[0] > 900 ? picSize : props.size[0]/3;
   if (isLoading) { return ( <Loader/> ); }
 
   return (
@@ -47,29 +48,35 @@ const PictureGrid = (props) => {
                height: `${picSize}px`,
                width: `${picSize}px`,
                backgroundColor: '#CCD'
+
             }}>
             <div style={{
               width:'40px',
               height:'40px',
               marginTop: '50%',
               marginLeft: '50%',
-              transform: `translate(-50%, -50%)`,
+              transform: `translate(-50%, -50%)`
+
             }}>
               <Loader size="100"/>
             </div>
            </div> )
         }
         { paths.map((src, index) =>
-          <div
-            key={`pic_div_${index}`}
-            style={{
-                    cursor: 'pointer',
-                    height: `${picSize}px`,
-                    width: `${picSize}px`,
-                    overflow:'hidden'
-                  }}
-          >
-           <ImageModal my_src={ src.path } my_height={ src.height } my_width={ src.width } picSize={ picSize } size={ props.size }/>
+          <div key={`pic_div_${index}`} style={{ height: image_container_height }}>
+            <div
+              style={{
+                      cursor: 'pointer',
+                      height: `${picSize}px`,
+                      width: `${picSize}px`,
+                      overflow:'hidden',
+                      marginTop: '50%',
+                      marginLeft: '50%',
+                      transform: `translate(-50%, -50%)`
+                    }}
+            >
+             <ImageModal my_src={ src.path } my_height={ src.height } my_width={ src.width } picSize={ picSize } size={ props.size }/>
+            </div>
           </div>
         )}
       </div>
