@@ -215,6 +215,7 @@ function* get_new_paths() {
              paths: paths,
            }
         })
+        yield put({ type: 'DONT_SHOW_PCTURE_GRID_LOADER' })
       }
     }
     catch (err) { console.log('err  :  '+err); }
@@ -385,7 +386,8 @@ function* upload_avatar() {
         config
       );
 
-      yield put({type:'REQUEST_USER_AVATAR_SAGA', user_id: userInput.image_values.user_id})
+        yield put({type:'REQUEST_USER_AVATAR_SAGA', user_id: userInput.image_values.user_id});
+        yield put({type:'DONT_SHOW_AVATAR_LOADER'});
      }
 
     catch (err) { console.log('err  :  '+err); }
@@ -445,7 +447,7 @@ function* search_for_user() {
       );
 
       const { users, successful_res } = result.data;
-      console.log(result.data)
+  //    console.log(result.data)
 
 
       if (!successful_res) { console.log('unsuccessful_respons!'); }

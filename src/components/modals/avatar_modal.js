@@ -7,6 +7,10 @@ import MyTheme from '../../theme';
 import CloseIcon from '@material-ui/icons/Close';
 import DefaultAvatar from '../graphic_components/default_avatar.png';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import Loader from '../graphic_components/loader';
+
+
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080';
 
 const AvatarModal = (props) => {
 
@@ -48,6 +52,7 @@ const AvatarModal = (props) => {
      let avatarName = props.avatar;
      let { user_id, userName } = props;
      props.upload_avatar(avatar, user_id, userName, avatarName);
+     props.show_avatar_loader_func();
      setState({ show_sub_button: 0.2, disable_sub_button: true });
      handleClose();
   };
@@ -80,7 +85,10 @@ const AvatarModal = (props) => {
   return (
     <div>
       <div style = {{ margin: 'auto', width:'130px', height:'130px', cursor: 'pointer' }}>
-        <AvatarComp/>
+        {
+           ((props.show_avatar_loader === 1) && (<div style={{ width: '40px', marginLeft: '50%', transform: `translate(-50%, 0%)`}}><Loader/></div>)) ||
+          ((props.show_avatar_loader === 0) && (<AvatarComp/>))
+        }
       </div>
       <Modal
         open = { open }
@@ -136,13 +144,15 @@ const mapStateToProps = (reducer) => {
   return {
     user_id: reducer.user_id,
     userName: reducer.userName,
-    avatar: reducer.avatar
+    avatar: reducer.avatar,
+    show_avatar_loader: reducer.show_avatar_loader
   }
 };
 
 const mapDispatchToProps = dispatch => ({
   upload_avatar: (avatar, user_id, userName, avatarName) => dispatch({ type: 'UPLOAD_AVATAR_SAGA', image_values: { avatar, user_id, userName, avatarName } }),
-  delete_avatar: (avatarName, userName, user_id) => dispatch({ type: 'DELETE_IMAGE_SAGA', values: { avatarName, userName, user_id } })
+  delete_avatar: (avatarName, userName, user_id) => dispatch({ type: 'DELETE_IMAGE_SAGA', values: { avatarName, userName, user_id } }),
+  show_avatar_loader_func: () => dispatch({ type: 'SHOW_AVATAR_LOADER' })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AvatarModal);

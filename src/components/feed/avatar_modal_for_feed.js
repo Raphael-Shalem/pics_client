@@ -8,6 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import DefaultAvatar from '../graphic_components/default_avatar.png';
 import Loader from '../graphic_components/loader';
 
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
 
 const styles = {
   root: {
@@ -154,7 +155,7 @@ const AvatarModal = (props) => {
     return(
       <>
       <div style={ styles.grid_style }>
-        <Avatar  alt='avatar' src={src} style={ styles.avatar2 } onClick={ go_to_other_user_profile }/>
+        <Avatar  alt='avatar' src={ src } style={ styles.avatar2 } onClick={ go_to_other_user_profile }/>
         <div>
           <p style={ styles.p } onClick={ go_to_following } >following: { other_user && other_user.following && other_user.following.length }</p>
           <p style={ styles.p } onClick={ go_to_followers } >followers: { other_user && other_user.followers && other_user.followers.length }</p>
@@ -168,7 +169,7 @@ const AvatarModal = (props) => {
   return (
     <div>
       <div style = { styles.root}>
-        <Avatar onClick={ handleOpen } alt='avatar' src={src} style={ styles.avatar1 }/>
+        <Avatar onClick={ handleOpen } alt='avatar' src={ src } style={ styles.avatar1 }/>
       </div>
       <Modal
         open = { open }

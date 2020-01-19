@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ImageModal from '../modals/image_modal';
 import Loader from '../graphic_components/loader';
 
-const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
 
 const styles = {
   grid: {
@@ -42,6 +42,23 @@ const PictureGrid = (props) => {
       }}
       >
       <div style={ styles.grid }>
+        { (props.show_picture_grid_loader === 1) &&
+          ( <div style={{
+               height: `${picSize}px`,
+               width: `${picSize}px`,
+               backgroundColor: '#CCD'
+            }}>
+            <div style={{
+              width:'40px',
+              height:'40px',
+              marginTop: '50%',
+              marginLeft: '50%',
+              transform: `translate(-50%, -50%)`,
+            }}>
+              <Loader size="100"/>
+            </div>
+           </div> )
+        }
         { paths.map((src, index) =>
           <div
             key={`pic_div_${index}`}
@@ -52,7 +69,7 @@ const PictureGrid = (props) => {
                     overflow:'hidden'
                   }}
           >
-            <ImageModal my_src={ `${host}/${src.path}` } my_height={ src.height } my_width={ src.width } picSize={ picSize } size={ props.size }/>
+           <ImageModal my_src={ src.path } my_height={ src.height } my_width={ src.width } picSize={ picSize } size={ props.size }/>
           </div>
         )}
       </div>
@@ -62,19 +79,16 @@ const PictureGrid = (props) => {
 }
 
 
-const mapStateToProps = ({
-  paths,
-  user_id,
-  userName,
-  //user_loged_in,
-//  avatar
-}) => ({
-    paths,
-    user_id,
-    userName,
-//    user_loged_in,
-//    avatar
-});
+
+const mapStateToProps = (reducer) => {
+  return {
+     paths: reducer.paths,
+     user_id: reducer.user_id,
+     userName: reducer.userName,
+     show_picture_grid_loader: reducer.show_picture_grid_loader
+   }
+};
+
 
 const mapDispatchToProps = dispatch => ({
 //  requestImagesForUser: (user_id, userName, avatar) => dispatch({ type: 'REQUEST_IMAGES_FOR_USER_SAGA', values: { user_id, userName, avatar } }),

@@ -8,6 +8,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 
+
 const AddPicModal = (props) => {
 
   const useStyles = makeStyles(theme => ({
@@ -56,6 +57,7 @@ const AddPicModal = (props) => {
       let pic = state.file;
       let { user_id, userName, avatar } = props;
       props.upload_image(pic, user_id, userName, avatar);
+      props.show_pictuer_grid_loader();
       setState({ show_sub_button: 0.2, disable_sub_button: true });
       if(props.feed_page_mark || props.other_user) { props.empty_other_user_object() }
 
@@ -133,6 +135,7 @@ const mapStateToProps = (reducer) => {
 const mapDispatchToProps = dispatch => ({
   upload_image: (pic, user_id, userName, avatar) => dispatch({ type: 'UPLOAD_IMAGE_SAGA', image_values: { pic, user_id, userName, avatar } }),
   empty_other_user_object: () => dispatch({ type: 'EMPTY_OTHER_USER_OBJECT' }),
+  show_pictuer_grid_loader: () => dispatch({ type: 'SHOW_PCTURE_GRID_LOADER' })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPicModal);

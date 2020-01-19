@@ -22,6 +22,7 @@ const styles = {
     textAlign: 'center',
     width:'35%',
     height:'50px',
+  //  backgroundColor: '#1A1A33',
     backgroundColor: '#1A1A33',
 
   //  backgroundColor: '#30304B',
@@ -70,6 +71,7 @@ const LogInForm_ = (props) => {
           top: '50%',
           left: '50%',
           transform: `translate(-50%, -50%)`,
+      //    backgroundColor: '#494958',
           backgroundColor: '#494958',
           width: size > 600 ? '500px' : '95%',
           padding: '100px 0 100px 0',

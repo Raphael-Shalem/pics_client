@@ -4,6 +4,8 @@ import Avatar from '@material-ui/core/Avatar';
 import DefaultAvatar from '../graphic_components/default_avatar.png';
 import Loader from '../graphic_components/loader';
 
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080';
+
  const styles = {
    comp: {
      backgroundColor: '#40404F',

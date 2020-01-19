@@ -1,7 +1,7 @@
 import React from "react";
 import ImageModal from '../modals/image_modal_2';
 
-const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080'
 
 const styles = {
   grid: {
@@ -38,7 +38,7 @@ const PictureGrid_ = (props) => {
                   overflow:'hidden'
                 }}
           >
-            <ImageModal my_src={ `${host}/${src.path}` } my_height={ src.height } my_width={ src.width } picSize = {picSize} size={ props.size }/>
+            <ImageModal my_src={ src.path } my_height={ src.height } my_width={ src.width } picSize = {picSize} size={ props.size }/>
           </div>
         )}
       </div>

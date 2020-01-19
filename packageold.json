@@ -28,7 +28,7 @@
   "devDependencies": {
     "nodemon": "^1.18.4"
   },
-  "proxy": "https://raphael-pics-server.herokuapp.com",
+  "proxy": "http://localhost:8080",
   "browserslist": {
     "production": [
       ">0.2%",

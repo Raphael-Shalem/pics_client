@@ -8,6 +8,9 @@ export default createMuiTheme({
       }
     }
   },
+  load: {
+    background: '#FFF'
+  },
   signupButton: {
     padding:'20px',
     width: '150px',

@@ -8,6 +8,7 @@ import DefaultAvatar from '../graphic_components/default_avatar.png';
 import MyTheme from '../../theme';
 import Loader from '../graphic_components/loader';
 
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080';
 
 const styles = {
   container: {

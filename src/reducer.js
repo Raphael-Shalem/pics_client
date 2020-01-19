@@ -22,7 +22,9 @@ const initialState = {
    open_suggstions_modal: 0,
    switch_profile: 0,
    other_user: 0,
-   show_loader: 0
+   show_loader: 0,
+   show_picture_grid_loader: 0,
+   show_avatar_loader: 0
  };
 
 const reducer = (state = initialState, action) => {
@@ -44,7 +46,7 @@ const reducer = (state = initialState, action) => {
                  user_is_authenticated: true,
                  user_id: user_id,
                  userName: userName,
-                 paths: paths || [],
+                 paths: paths || []
                }
 
     case 'SET_INTERACTIONS':
@@ -232,6 +234,26 @@ const reducer = (state = initialState, action) => {
         return { ...state,
                  show_loader: show_loader
                }
+
+ case 'SHOW_PCTURE_GRID_LOADER':
+       return { ...state,
+                show_picture_grid_loader: 1
+              }
+
+ case 'DONT_SHOW_PCTURE_GRID_LOADER':
+       return { ...state,
+                show_picture_grid_loader: 0
+              }
+
+  case 'SHOW_AVATAR_LOADER':
+  return { ...state,
+           show_avatar_loader: 1
+         }
+
+  case 'DONT_SHOW_AVATAR_LOADER':
+  return { ...state,
+           show_avatar_loader: 0
+         }
 
   case 'CANCEL_FIRST_ENTRY':
         return { ...state,

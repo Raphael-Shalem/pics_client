@@ -8,6 +8,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import DefaultAvatar from '../graphic_components/default_avatar.png';
 import Loader from '../graphic_components/loader';
 
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080';
+
 const styles = {
   root: {
     margin: 'auto',
@@ -90,6 +92,7 @@ const AvatarModal = (props) => {
 
   let { other_user, followers, user_id, show_loader } = props;
   let following = JSON.parse(JSON.stringify(props.following));
+
 
   const src = other_user.avatar ? other_user.avatar : DefaultAvatar;
 

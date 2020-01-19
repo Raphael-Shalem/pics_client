@@ -8,6 +8,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DefaultAvatar from '../graphic_components/default_avatar.png';
 
+//const host = process.env.NODE_ENV === 'production' ? 'https://raphael-pics-server.herokuapp.com' : 'http://localhost:8080';
+
 const styles = {
   paper: {
     top: '50%',
